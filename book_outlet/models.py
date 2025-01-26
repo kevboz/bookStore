@@ -14,13 +14,14 @@ class Book(models.Model):
             ])
     author = models.CharField(max_length=100,null=True)
     is_best_selling = models.BooleanField(default=False)
-    slug = models.SlugField(default="", null=False, db_index=True) #harry-potter-1
+    slug = models.SlugField(default="", blank=True, null=False, db_index=True) #harry-potter-1
 
     
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        # self.slug = self.title.replace(" ", "-").lower() # using the above in replace of this line
-        super(Book, self).save(*args, **kwargs) # makes sure the django default save method is called
+    # def save(self, *args, **kwargs):
+    #     self.slug = slugify(self.title)
+    #     # self.slug = self.title.replace(" ", "-").lower() # using the above in replace of this line
+    #     super(Book, self).save(*args, **kwargs) # makes sure the django default save method is called
+    #removed cause 
     
     
     def get_absolute_url(self):
